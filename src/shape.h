@@ -1,7 +1,14 @@
 #pragma once
 
+#include<eigen3/Eigen/Core>
+
 class Shape
-{};
+{
+private:
+    Eigen::Vector3d orientation;
+public:
+    Shape();
+};
 
 class Cube : public Shape
 {

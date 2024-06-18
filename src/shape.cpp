@@ -1,5 +1,7 @@
 #include "shape.h"
 
+Shape::Shape(void) : orientation(Eigen::Vector3d(0, 0, 1)) {}
+
 Cube::Cube(int edgeLength) : edgeLength(edgeLength) {}
 
 Pyramid::Pyramid(int edgeLength) : edgeLength(edgeLength) {}
