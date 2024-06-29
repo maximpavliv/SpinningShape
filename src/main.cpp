@@ -1,19 +1,13 @@
 #include <ncurses.h> // TODO delete (with getch)
+#include "display.h"
 
 int main() {
-    // init screen and sets up screen
-    initscr();
+    Display::getInstance().initializeDisplay();
 
-    // print to screen
-    printw("Hello World");
-
-    // refreshes the screen
-    refresh();
+    Display::getInstance().renderFrame();
 
     // pause the screen output
     getch();
 
-    // deallocates memory and ends ncurses
-    endwin();
     return 0;
 }
