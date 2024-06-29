@@ -28,7 +28,7 @@ all: $(TARGET)
 # Rule to link the object files into the final executable
 $(TARGET): $(OBJS)
 	@mkdir -p $(@D)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS) -lncurses
 
 # Rule to compile the source files into object files
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
