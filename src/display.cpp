@@ -1,10 +1,13 @@
 #include "display.h"
 #include <ncurses.h>
+#include "ray.h"
 
 const int Display::PIXEL_WIDTH  = 1; // in distance units
 const int Display::PIXEL_HEIGHT = 2; // in distance units
 const int Display::VIEWPORT_WIDTH  = 60; // in distance units
 const int Display::VIEWPORT_HEIGHT = 60; // in distance units
+
+const float Display::DISTANCE_TO_VIEWPORT = 100; // in distance units
 
 // Initialize the static instance
 Display Display::instance;
@@ -56,12 +59,23 @@ void Display::initializeDisplay() {
 }
 
 void Display::renderFrame(void) {
-    if (displayInitialized) {
-        // move and print in window
-        mvwprintw(window, 0, 1, "Greeter");
-        mvwprintw(window, 1, 1, "Hello");
+    for (uint8_t i=0; i<NB_PIXELS_HEIGHT; i++) {
+        for (uint8_t j=0; j<NB_PIXELS_WIDTH; j++) {
 
-        // refreshing the window
+            Ray ray(Eigen::Vector3f(0,0,0),
+                    Eigen::Vector3f(
+                        PIXEL_WIDTH  * (j - (float)(NB_PIXELS_WIDTH -1) /2),
+                        PIXEL_HEIGHT * (i - (float)(NB_PIXELS_HEIGHT-1)/2),
+                        DISTANCE_TO_VIEWPORT));
+
+            if (displayInitialized) {
+                mvwaddch(window, i+1, j+1, 'W');
+            }
+        }
+    }
+
+    // refreshing the window
+    if (displayInitialized) {
         wrefresh(window);
     }
 }

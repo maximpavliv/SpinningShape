@@ -20,6 +20,8 @@ private:
     const static int VIEWPORT_WIDTH;  // in distance units
     const static int VIEWPORT_HEIGHT; // in distance units
 
+    const static float DISTANCE_TO_VIEWPORT; // in distance units
+
     Display();
     ~Display();
 
