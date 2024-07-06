@@ -6,9 +6,11 @@ class Shape
 {
 protected:
     Eigen::Vector3f centerPosition;
+    Eigen::Matrix3f rotation;
 
 public:
     Shape(const Eigen::Vector3f& position);
+    void rotate(const Eigen::Matrix3f& rotMatrix);
 };
 
 class Sphere : public Shape

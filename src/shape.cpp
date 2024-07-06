@@ -2,6 +2,9 @@
 
 Shape::Shape(const Eigen::Vector3f& position) : centerPosition(position) {}
 
+void Shape::rotate(const Eigen::Matrix3f& rotMatrix) {
+    rotation = rotMatrix * rotation;
+}
 
 
 Sphere::Sphere(const Eigen::Vector3f& position, float radius)
