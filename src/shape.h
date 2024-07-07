@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <eigen3/Eigen/Core>
+#include <set>
 #include "ray.h"
 
 class Shape
@@ -12,6 +13,10 @@ protected:
 
 public:
     Shape(const Eigen::Vector3f& position);
+
+    // Static method to retrieve valid shape names
+    static std::set<std::string> getValidShapeNames();
+
     void rotate(const Eigen::Matrix3f& rotMatrix);
 
     virtual std::vector<Eigen::Vector3f> intersect(const Ray& ray) const = 0;

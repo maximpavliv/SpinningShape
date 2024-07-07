@@ -3,7 +3,7 @@ CXX = g++
 
 # Compiler flags
 CXXFLAGS = -Wall -std=c++20 -g
-LDFLAGS = -lncurses
+LDFLAGS = -lboost_program_options -lncurses
 
 # The name of the executable
 TARGET = bin/spinning_shape
