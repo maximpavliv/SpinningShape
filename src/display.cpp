@@ -1,6 +1,6 @@
-#include "display.h"
+#include "display.hpp"
 #include <ncurses.h>
-#include "ray.h"
+#include "ray.hpp"
 
 const int Display::PIXEL_WIDTH  = 1; // in distance units
 const int Display::PIXEL_HEIGHT = 2; // in distance units

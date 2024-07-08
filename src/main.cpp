@@ -1,7 +1,7 @@
 #include <ncurses.h> // TODO delete (with getch)
 #include <iostream>
-#include "display.h"
-#include "shape.h"
+#include "display.hpp"
+#include "shapes/shape.hpp"
 #include <boost/program_options.hpp>
 
 namespace po = boost::program_options;
