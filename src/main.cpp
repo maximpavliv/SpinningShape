@@ -2,12 +2,13 @@
 #include <iostream>
 #include "display.hpp"
 #include "shapes/shape.hpp"
+#include "shape_factory.hpp"
 #include <boost/program_options.hpp>
 
 namespace po = boost::program_options;
 
 std::string parseCommandLine(int argc, char* argv[]) {
-    const std::set<std::string> validShapes = Shape::getValidShapeNames();
+    const std::set<std::string> validShapes = ShapeFactory::getInstance().getValidShapeNames();
 
     try {
         // Define allowed options
@@ -62,10 +63,11 @@ std::string parseCommandLine(int argc, char* argv[]) {
 }
 
 int main(int argc, char *argv[]) {
-
     std::string shapeType = parseCommandLine(argc, argv);
 
     Display::getInstance().initializeDisplay();
+
+    std::unique_ptr<Shape> shape = ShapeFactory::getInstance().createShape(shapeType);
 
     Display::getInstance().renderFrame();
 
