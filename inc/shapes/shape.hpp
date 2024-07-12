@@ -8,6 +8,8 @@
 class Shape
 {
 protected:
+    static const Eigen::Vector3f DEFAULT_SHAPE_POSITION;
+
     Eigen::Vector3f centerPosition;
     Eigen::Matrix3f rotation;
 
