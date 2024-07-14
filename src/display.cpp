@@ -58,7 +58,7 @@ void Display::initializeDisplay() {
     displayInitialized = true;
 }
 
-void Display::renderFrame(void) {
+void Display::renderFrame(const Shape& shape) {
     for (uint8_t i=0; i<NB_PIXELS_HEIGHT; i++) {
         for (uint8_t j=0; j<NB_PIXELS_WIDTH; j++) {
 
@@ -68,8 +68,14 @@ void Display::renderFrame(void) {
                         PIXEL_HEIGHT * (i - (float)(NB_PIXELS_HEIGHT-1)/2),
                         DISTANCE_TO_VIEWPORT));
 
+            std::vector<Eigen::Vector3f> intersections = shape.intersect(ray);
+
             if (displayInitialized) {
-                mvwaddch(window, i+1, j+1, 'W');
+                if (intersections.empty()) {
+                    mvwaddch(window, i+1, j+1, ' ');
+                } else {
+                    mvwaddch(window, i+1, j+1, 'W');
+                }
             }
         }
     }

@@ -1,5 +1,6 @@
 #pragma once
 #include <ncurses.h>
+#include "shapes/shape.hpp"
 
 class Display {
 public:
@@ -10,7 +11,7 @@ public:
 
     void initializeDisplay(void);
 
-    void renderFrame(void);
+    void renderFrame(const Shape& shape);
 
 private:
     bool displayInitialized = false;

@@ -69,7 +69,7 @@ int main(int argc, char *argv[]) {
 
     std::unique_ptr<Shape> shape = ShapeFactory::getInstance().createShape(shapeType);
 
-    Display::getInstance().renderFrame();
+    Display::getInstance().renderFrame(*shape);
 
     // pause the screen output
     getch();
