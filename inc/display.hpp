@@ -33,4 +33,8 @@ private:
     const uint8_t NB_PIXELS_HEIGHT;
 
     WINDOW * window;
+
+    char getPixelAsscii(const std::vector<SurfacePoint>& intersections) const;
+
+    const SurfacePoint& getClosestSurfacePoint(const std::vector<SurfacePoint>& surfacePoints) const;
 };

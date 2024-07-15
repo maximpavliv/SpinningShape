@@ -70,12 +70,10 @@ void Display::renderFrame(const Shape& shape) {
 
             std::vector<SurfacePoint> intersections = shape.intersect(ray);
 
+            char pixelAscii = getPixelAsscii(intersections);
+
             if (displayInitialized) {
-                if (intersections.empty()) {
-                    mvwaddch(window, i+1, j+1, ' ');
-                } else {
-                    mvwaddch(window, i+1, j+1, 'W');
-                }
+                mvwaddch(window, i+1, j+1, pixelAscii);
             }
         }
     }
@@ -83,5 +81,27 @@ void Display::renderFrame(const Shape& shape) {
     // refreshing the window
     if (displayInitialized) {
         wrefresh(window);
+    }
+}
+
+char Display::getPixelAsscii(const std::vector<SurfacePoint>& intersections) const {
+    if (intersections.empty()) {
+        return ' ';
+    } else {
+        SurfacePoint closestIntersection = getClosestSurfacePoint(intersections);
+        return 'W';
+    }
+}
+
+const SurfacePoint& Display::getClosestSurfacePoint(const std::vector<SurfacePoint>& surfacePoints) const {
+    if (surfacePoints.empty()) {
+        throw std::invalid_argument("Received surfacePoints list is empty");
+    } else {
+        auto closestSurfacePoint = std::min_element(surfacePoints.begin(),
+            surfacePoints.end(),
+            [](const SurfacePoint &a, const SurfacePoint &b) {
+                return a.getPosition().z() < b.getPosition().z();
+            });
+        return *closestSurfacePoint;
     }
 }
