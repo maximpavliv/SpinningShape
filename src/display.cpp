@@ -68,7 +68,7 @@ void Display::renderFrame(const Shape& shape) {
                         PIXEL_HEIGHT * (i - (float)(NB_PIXELS_HEIGHT-1)/2),
                         DISTANCE_TO_VIEWPORT));
 
-            std::vector<Eigen::Vector3f> intersections = shape.intersect(ray);
+            std::vector<SurfacePoint> intersections = shape.intersect(ray);
 
             if (displayInitialized) {
                 if (intersections.empty()) {

@@ -9,7 +9,7 @@ Donut::Donut() : Donut(DEFAULT_SHAPE_POSITION, DEFAULT_DONUT_MAJOR_RADIUS,
 Donut::Donut(const Eigen::Vector3f& position, float majorRadius, float minorRadius)
     : Shape(position), majorRadius(majorRadius), minorRadius(minorRadius) {}
 
-std::vector<Eigen::Vector3f> Donut::intersect(const Ray& ray) const {
-    std::vector<Eigen::Vector3f> intersections;
+std::vector<SurfacePoint> Donut::intersect(const Ray& ray) const {
+    std::vector<SurfacePoint> intersections;
     return intersections;
 }

@@ -12,5 +12,5 @@ private:
 public:
     Cube();
     Cube(const Eigen::Vector3f& position, float edgeLength);
-    std::vector<Eigen::Vector3f> intersect(const Ray& ray) const override;
+    std::vector<SurfacePoint> intersect(const Ray& ray) const override;
 };

@@ -14,5 +14,5 @@ private:
 public:
     Coin();
     Coin(const Eigen::Vector3f& position, float radius, float height);
-    std::vector<Eigen::Vector3f> intersect(const Ray& ray) const override;
+    std::vector<SurfacePoint> intersect(const Ray& ray) const override;
 };

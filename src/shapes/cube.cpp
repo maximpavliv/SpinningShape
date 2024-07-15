@@ -7,7 +7,7 @@ Cube::Cube() : Cube(DEFAULT_SHAPE_POSITION, DEFAULT_CUBE_EDGE) {}
 Cube::Cube(const Eigen::Vector3f& position, float edgeLength)
     : Shape(position), edgeLength(edgeLength) {}
 
-std::vector<Eigen::Vector3f> Cube::intersect(const Ray& ray) const {
-    std::vector<Eigen::Vector3f> intersections;
+std::vector<SurfacePoint> Cube::intersect(const Ray& ray) const {
+    std::vector<SurfacePoint> intersections;
     return intersections;
 }
