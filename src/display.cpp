@@ -9,6 +9,11 @@ const int Display::VIEWPORT_HEIGHT = 60; // in distance units
 
 const float Display::DISTANCE_TO_VIEWPORT = 100; // in distance units
 
+const Eigen::Vector3f Display::LIGHT_DIRECTION = Eigen::Vector3f(0.5, 0.25, 1).stableNormalized();
+
+const char* Display::densities = ".:-+=%#@";
+const int Display::nbDensitiesChars = strlen(densities);
+
 // Initialize the static instance
 Display Display::instance;
 
@@ -89,7 +94,8 @@ char Display::getPixelAsscii(const std::vector<SurfacePoint>& intersections) con
         return ' ';
     } else {
         SurfacePoint closestIntersection = getClosestSurfacePoint(intersections);
-        return 'W';
+        float scalarProduct = closestIntersection.getNormal().dot(LIGHT_DIRECTION);
+        return getCharFromBrightness(-scalarProduct);
     }
 }
 
@@ -103,5 +109,15 @@ const SurfacePoint& Display::getClosestSurfacePoint(const std::vector<SurfacePoi
                 return a.getPosition().z() < b.getPosition().z();
             });
         return *closestSurfacePoint;
+    }
+}
+
+char Display::getCharFromBrightness(float brightness) {
+    if (brightness < 0) {
+        return ' ';
+    } else if (brightness < 1) {
+        return densities[(int) (brightness * nbDensitiesChars)];
+    } else {
+        throw std::invalid_argument("Pixel brightness is greater than 1");
     }
 }

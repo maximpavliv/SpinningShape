@@ -23,6 +23,8 @@ private:
 
     const static float DISTANCE_TO_VIEWPORT; // in distance units
 
+    const static Eigen::Vector3f LIGHT_DIRECTION;
+
     Display();
     ~Display();
 
@@ -34,7 +36,12 @@ private:
 
     WINDOW * window;
 
+    static const char* densities;
+    static const int nbDensitiesChars;
+
     char getPixelAsscii(const std::vector<SurfacePoint>& intersections) const;
 
     const SurfacePoint& getClosestSurfacePoint(const std::vector<SurfacePoint>& surfacePoints) const;
+
+    static char getCharFromBrightness(float brightness);
 };
